@@ -1,0 +1,24 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.TOKEN }}
+        issue-message: |-
+          Hi ${{ github.event.issue.user.login }} 👋! 
+          Congratulations on opening your first issue 🎊!
+          Please add appropriate labels to let maintainers know the type of issue and also add relevant details and screenshots if needed
+          Happy Hacking! ✨
+        pr-message: |-
+          Hi ${{ github.event.issue.user.login }} 👋! 
+          Congratulations on opening your first pull request 🎊!
+          Please add appropriate labels to let maintainers know the type of change proposed and also please reference the issue this pull request is closing
+          Happy Hacking! ✨
